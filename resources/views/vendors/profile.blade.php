@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Profile | OWM')
+@section('title', 'Vendor Profile | OWM')
 
 @section('stylesheet')
   {!! Html::style('/css/dashboard.css')!!}
@@ -9,6 +9,7 @@
 @section('content')
         <!--Profile Content -->
         <div class="container-fluid m-3">
+          @include('partials.messages')
             <div class="col-md-10 mx-auto">
             <div class="row">
                 <nav class="col-md-3 mb-3">
@@ -43,7 +44,7 @@
                         <div class="row">
                           <div class="col-md-4 col-sm-4 col-xs-4 text-center" style="font-size: 1.2rem;padding: 6px;border: 1.5px solid; border-radius: 3px;"><p><h2>0</h2></p><p>Leads</p></div>
                           <div class="col-md-4 col-sm-4 col-xs-4 text-center" style="font-size: 1.2rem;padding: 6px;border: 1.5px solid; border-radius: 3px;"><p><h2>0</h2></p><p>Love Count</p></div>
-                          <div class=" col-md-4 col-sm-4 col-xs-4 text-center" style="font-size: 1.2rem;padding: 6px;border: 1.5px solid; border-radius: 3px;"><p><h2>0</h2></p><p>Reviews</p></div>
+                          <div class=" col-md-4 col-sm-4 col-xs-4 text-center" style="font-size: 1.2rem;padding: 6px;border: 1.5px solid; border-radius: 3px;"><p><h2>{{$vendor->reviews->count()}}</h2></p><p>Reviews</p></div>
                         </div>
                         <hr>
                         <div class="progress bg0" style="font-size: 1.2rem;height: 50px; padding: 6px;border: 1.5px solid rgba(242, 39, 106, 0.76); border-radius: 3px;"><div class="progress-bar progress-bar-striped active bg10" style="line-height: 2.5rem;height: 36px; width:{{$completepercent}}%;" role="progressbar" aria-valuenow="{{$completepercent}}" aria-valuemin="0" aria-valuemax="100">{{$completepercent}}% Complete</div></div>
@@ -65,8 +66,17 @@
                         <h5>Personal Information</h5>
                       </div>
                       <div class="card-body">
-                        {!! Form::model($vendor, ['route'=>['vendor.update', $vendor->id], 'method' => 'PUT']) !!}
-
+                        {!! Form::model($vendor, ['route'=>['vendor.update', $vendor->id], 'method' => 'PUT', 'files'=>true]) !!}
+                        <div class="row justify-content-center">
+                          <div class="col-md-4">
+                            <div class="profile-img">
+                          <figure class="figure">
+                          <img src="{{URL::asset('images/'.$vendor->image)}}" class="figure-img img-fluid profile-pic">
+                          </figure>
+                        </div>
+                          <input name="image" class="file-upload form-control" type="file" accept="image/*"/>
+                          </div>
+                      </div>
                     <div class="form-group">
                         {{ Form::label('title', 'Login Email ID:', ['for'=>'email','class'=>''])}}
                         {{Form::email('email', null, ['class'=>'form-control','type'=>'text','readonly'=>'readonly'])}}
@@ -123,4 +133,33 @@
             </div>
         </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+</script>
 @endsection

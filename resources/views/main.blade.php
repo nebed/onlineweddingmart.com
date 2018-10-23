@@ -28,6 +28,7 @@
     {!!Html::style('/vendor/slick/slick.css')!!}
 <!--===============================================================================================-->
    {!!Html::style('/vendor/MagnificPopup/magnific-popup.css')!!}
+   {!!Html::style('vendor/lazyload/jquery.lazyloadxt.spinner.min.css')!!}
 <!--===============================================================================================-->
    {!!Html::style('/vendor/perfect-scrollbar/perfect-scrollbar.css')!!}
 <!--===============================================================================================-->
@@ -351,12 +352,36 @@
             </div>
             
             <div class="header-cart-content flex-w js-pscroll">
+
+                <ul class="header-cart-wrapitem w-full">
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="/vendor/profile" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                               Profile
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="/vendor/projects" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                Projects
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                       
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="/vendor/reviews" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                Reviews
+                            </a>
+                        </div>
+                    </li>
+                </ul>
                 
                 <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Profile
-                    </div>
-
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'vendor.logout'])!!}
                         {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'])}}
@@ -547,6 +572,7 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> All right
     </footer>
 
      {!!Html::script('/vendor/jquery/jquery-3.2.1.min.js')!!}
+      {!!Html::script('vendor/lazyload/jquery.lazyloadxt.min.js')!!}
 {!!Html::script('/vendor/bootstrap/js/popper.js')!!}
 
   {!!Html::script('/vendor/bootstrap/js/bootstrap.min.js')!!}

@@ -10,19 +10,29 @@
     <div class="container-fluid m-3">
         <div class="col-md-9 mx-auto">
             <div class="row">
-                <div class="col-md-3 mb-3">
-                    <div class="card text-white bg1" style="min-width: 18rem;">
+                <nav class="col-md-3 mb-3">
+                    <div class="card text-white bg1">
                       <div class="card-header">
-                        <h5>Profile</h5>
+                        <h5><i class="zmdi zmdi-account"></i>   Profile</h5>
                       </div>
-                      <div class="card-body text-center">
-                        <a href="{{route('vendor.profile')}}"><strong class="card-text">Information</strong></a><hr>
-                        <a href="{{route('vendor.projects')}}"><strong class="card-text">Projects</strong></a><hr>
-                        <a href="{{route('vendor.reviews')}}"><strong class="card-text">Reviews</strong></a><hr>
+                      <div class="card-body text-left">
+                       <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Information</strong></a>
+                          </li>
+                           <li class="nav-item">
+                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Projects</strong></a>
+                        </li>
+                        <li class="nav-item">
+                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.reviews')}}"><i class="zmdi zmdi-star"></i><strong class="card-text">    Reviews</strong></a>
+                        </li>
+                        </ul>
+                      </div>
                       </div>
                     </div>
-                </div>
-                <div class="col-md-9">
+                </nav>
+                <main class="col-md-9">
                     <div class="card block">
                       <div class="card-header text-white bg1">
                        <h5>Project: <strong>{{$project->name}}</strong></h5>
@@ -40,7 +50,7 @@
                         </div>
                       </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
        <!-- <div class="col-md-6 mx-auto">

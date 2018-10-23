@@ -6,9 +6,9 @@
 	<div class="page-wrapper">
         <div class="page-content--bge5-register">
             <div class="container">
-                @include('partials.messages')
                 <div class="login-wrap">
                     <div class="login-content">
+                        @include('partials.messages')
                         <div class="login-logo">
                             <a href="#">
                                 <img src="{{URL::asset("images/icons/logo-01.png")}}" alt="OWM">

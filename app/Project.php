@@ -13,4 +13,9 @@ class Project extends Model
 	public function getFirstImageAttribute() {
   		return $this->photos()->first();
 	}
+
+	public function vendor()
+    {
+    	return $this->belongsTo('App\Vendor');
+    }
 }

@@ -24,8 +24,9 @@ class ProfileController extends Controller
 
     public function getProfile($name)
     {
-        $profile = Vendor::where('slug',$name)->get();
-        return view('profile.home')->withProfile($profile);
+        $profile = Vendor::where('slug',$name)->first();
+        $category =  $profile->service->id;
+        $similarvendors = Vendor::where('service_id', $category)->orderBy('created_at','desc')->take(8)->get();        return view('profile.home')->withProfile($profile)->withSimilarvendors($similarvendors);
     }
 
     /**

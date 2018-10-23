@@ -37,6 +37,22 @@ html{
   zoom: 80%;
 }
 
+.profile-img {
+    overflow: hidden;
+    border-radius:5px !important;
+    width: 192px;
+    height: 128px;
+    background-color: #6c757d;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+form .website {
+  display:none;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
@@ -2493,6 +2509,12 @@ input.num-product::-webkit-inner-spin-button {
   text-transform: uppercase;
 }
 
+.mtext-114 {
+  font-family: Poppins-SemiBold;
+  font-size: 23px;
+  line-height: 1.388888;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
@@ -2809,6 +2831,7 @@ input.num-product::-webkit-inner-spin-button {
 .bg5 {background-color: rgba(0,0,0,0.5);}
 .bg6 {background-color: #f2f2f2;}
 .bg7 {background-color: #333;}
+.bg11 {background-color: #5ba829;}
 .bg10 {background-color: #ed1c24;}
 .bg8 {background-color: #f3f3f3;}
 .bg9 {background-color: rgba(255,255,255,0.9);}

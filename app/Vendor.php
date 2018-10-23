@@ -20,7 +20,7 @@ class Vendor extends Authenticatable
      */
 
     protected $fillable = [
-        'name', 'email', 'password', 'service_id', 'location_id','brand_name', 'slug',
+        'name', 'email', 'password', 'service_id', 'location_id','brand_name', 'slug', 'confirm_code',
     ];
 
     /**
@@ -46,6 +46,11 @@ class Vendor extends Authenticatable
     public function projects()
     {
         return $this->hasMany('App\Project');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 
     public function sendPasswordResetNotification($token)

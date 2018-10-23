@@ -5,6 +5,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Repositories\UserRepository;
 use App\Category;
+use App\Vendor;
 
 class BlogComposer
 {
@@ -36,6 +37,7 @@ class BlogComposer
     public function compose(View $view)
     {
         $blogcategories = Category::all();
-        $view->withBlogcategories($blogcategories);
+        $vendors = Vendor::take(5)->get();
+        $view->withBlogcategories($blogcategories)->withVendors($vendors);
     }
 }

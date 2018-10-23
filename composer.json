@@ -14,7 +14,8 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "unisharp/laravel-filemanager": "v2.0.0-alpha4",
         "mews/purifier": "^2.1",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "laravel/socialite": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

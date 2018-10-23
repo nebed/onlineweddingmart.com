@@ -8,13 +8,13 @@
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" >
+					<a href="/vendors/all" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {{ Request::is('vendors/all') ? "how-active1" : "" }}" >
 						All Vendors
-					</button>
+					</a>
                     @foreach($servicesmenu as $service)
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+					<a href="/vendors/all/{{$service->slug}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {{ Request::is('vendors/all/$service->slug') ? "how-active1" : "" }}" >
 						{{$service->name}}
-					</button>
+					</a>
                     @endforeach
 				</div>
 
@@ -240,6 +240,7 @@
               <p class="text-left mtext-104">
               	{{$service->name}}
               </p>
+               <p class="text-right mtext-104"><a href="/vendors/all/{{$service->slug}}">View More </a><i class="fa fa-angle-right fs-16" aria-hidden="true"></i></p>
                 <div class="tab-content p-t-9">
                     <!-- - -->
                     <div class="tab-pane fade show active" id="best-seller" role="tabpanel">
@@ -251,7 +252,7 @@
                                     <!-- Block2 -->
                                     <div class="block2">
                                        <div class="block2-pic hov-img0">
-								<img src="{{URL::asset('/images/product-01.jpg')}}" alt="IMG-PRODUCT">
+								<img data-src="{{URL::asset('/images/'.$vendor->image)}}" alt="IMG-PRODUCT">
 							</div>
 							<div class="block2-txt bg1 flex-w flex-t p-3">
 								<div class="block2-txt-child1 flex-col-l ">
@@ -259,12 +260,16 @@
 										{{$vendor->name}}
 									</a>
 									<span class="stext-105 cl0">
-										$75.00
+										<i class="icon-filter cl0 m-r-6 fs-22 trans-04 zmdi zmdi-pin"></i>
+										{{$vendor->location->name}}
 									</span>
 								</div>
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 stext-110 dis-block pos-relative js-addwish-b2">
-										<i class="icon-filter tsize1 hov-cl2 cl0 m-r-6 fs-15 trans-04 zmdi zmdi-favorite"></i>
+								<div class="block2-txt-child2 flex-col-r p-t-3">
+									<h1 class="fs-20 cl0">
+									<span class="badge bg11 badge-dark"><i class="zmdi zmdi-star"></i> {{!empty($vendor->reviews->average('rating')) ? $vendor->reviews->average('rating'):"0.0"}}</span>
+									</h1>
+									<a href="#" class="btn-addwish-b2 dis-block p-t-2 pos-relative js-addwish-b2">
+										<i class="icon-filter hov-cl2 cl0 m-r-6 fs-20 trans-04 zmdi zmdi-favorite"></i>
 									</a>
 								</div>
 							</div>
@@ -276,7 +281,6 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-right mtext-104">View More <i class="fa fa-angle-right mtext-104" aria-hidden="true"></i></p>
         </div>
         @endforeach
         <div class="flex-c-m flex-w w-full p-t-45 p-b-20">

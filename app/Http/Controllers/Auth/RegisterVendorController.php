@@ -7,6 +7,7 @@ use App\Slug;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 use Session;
 
 class RegisterVendorController extends Controller
@@ -75,15 +76,28 @@ class RegisterVendorController extends Controller
     protected function create(array $data)
     {
         //Slug::createSlug($data['brand_name']);
+        $confirm_code = str_random();
+        $emaildata = array(
+            'email'=> $data['email'],
+            'name'=> $data['name'],
+            'subject'=> "Welcome to OWM!",
+            'confirm_code' => $confirm_code,
+        );
+        Mail::send('emails.vendorwelcome', $emaildata, function($message) use($emaildata){
+            $message->from('no_reply@onlineweddingmart.com');
+            $message->to($emaildata['email']);
+            $message->subject($emaildata['subject']);
+        });
+        Session::flash('success', 'You have been successfully registered, login to access your dashboard');
         return Vendor::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'slug' => (new Slug)->createSlug($data['brand_name']),
             'service_id' => $data['service_id'],
+            'confirm_code' => $confirm_code,
             'location_id' => $data['location_id'],
             'brand_name' => $data['brand_name'],
         ]);
-        Session::flash('success', 'You have been successfully registered, login to access your dashboard');
     }
 }

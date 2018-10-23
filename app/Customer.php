@@ -20,7 +20,7 @@ class Customer extends Authenticatable
      */
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'provider', 'provider_id'
     ];
 
     /**
@@ -35,6 +35,21 @@ class Customer extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomerResetPasswordNotification($token));
+    }
+
+    public function wedding()
+    {
+        return $this->hasOne('App\Wedding');
+    }
+
+    public function booking()
+    {
+        return $this->hasMany('App\Booking');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 
 

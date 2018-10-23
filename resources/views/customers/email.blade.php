@@ -6,9 +6,9 @@
     <div class="page-wrapper">
         <div class="page-content--bge5-register">
             <div class="container">
-                @include('partials.messages')
                 <div class="login-wrap">
                     <div class="login-content">
+                        @include('partials.messages')
                         @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}

@@ -16,19 +16,40 @@
         <div class="container">
             <div class="flex-w flex-tr">
                 <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+                    @if (session('status'))
+                        <div class="alert alert-success alert-dismissable">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     {!!Form::open()!!}
                         <h4 class="mtext-105 cl2 txt-center p-b-30">
                             Send Us A Message
                         </h4>
-                        <div class="bor8 m-b-20 how-pos4-parent">
-                            {{Form::email('email',null,['class'=>'stext-111 cl2 plh3 size-116 p-l-62 p-r-30','placeholder'=>'Your Email Address'])}}
+                        <div class="bor8 m-b-20 how-pos4-parent {{ $errors->has('email') ? ' has-error' : '' }}">
+                            {{Form::email('email',null,['class'=>'stext-111 cl2 plh3 size-116 p-l-62 p-r-30','placeholder'=>'Your Email Address*','required'=>''])}}
                             <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                            <input name="website" type="text" class="website stext-111 cl2 plh3 size-116 p-l-62 p-r-30"/>
+                            @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                         </div>
-                        <div class="bor8 m-b-20">
-                            {{Form::text('subject',null,['class'=>'stext-111 cl2 plh3 size-116 p-lr-28','placeholder'=>'Subject'])}}
+                        <div class="bor8 m-b-20 {{ $errors->has('subject') ? ' has-error' : '' }}">
+                            {{Form::text('subject',null,['class'=>'stext-111 cl2 plh3 size-116 p-lr-28','placeholder'=>'Subject*','required'=>''])}}
+                            @if ($errors->has('subject'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('subject') }}</strong>
+                                    </span>
+                                @endif
                         </div>
-                        <div class="bor8 m-b-30">
-                            {{Form::textarea('message',null,['class'=>'stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25','placeholder'=>'Tell Us Anything'])}}
+                        <div class="bor8 m-b-30 {{ $errors->has('message') ? ' has-error' : '' }}">
+                            {{Form::textarea('message',null,['class'=>'stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25','placeholder'=>'Tell Us Anything','required'=>''])}}
+                            @if ($errors->has('message'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('message') }}</strong>
+                                    </span>
+                                @endif
                         </div>
                             {{Form::submit('Send Message',['class'=>'flex-c-m stext-101 cl0 size-121 bg1 bor1 hov-btn2 p-lr-15 trans-04 pointer'])}}
                     {!!Form::close()!!}
@@ -62,7 +83,7 @@
                             </span>
 
                             <p class="stext-115 cl1 size-213 p-t-18">
-                                somto@onlineweddingmart.com
+                                admin@onlineweddingmart.com
                             </p>
                         </div>
                     </div>

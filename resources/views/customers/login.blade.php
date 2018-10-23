@@ -8,6 +8,7 @@
             <div class="container">
                 <div class="login-wrap">
                     <div class="login-content">
+                        @include('partials.messages')
                         <div class="login-logo">
                             <a href="#">
                                 <img src="{{URL::asset("images/icons/logo-01.png")}}" alt="OWM">
@@ -18,7 +19,7 @@
                                 {{ csrf_field() }}
                                 <div class="social-login-content">
                                     <div class="social-button text-center">
-                                        <button class="au-btn au-btn--block au-btn--blue">continue with facebook</button>
+                                        <a href="{{route('facebook.redirect')}}" class="au-btn au-btn--block au-btn--blue">continue with facebook</a>
                                         <p><small>we are not going to post anything without your permission</small></p>
                                     </div>
                                 </div>

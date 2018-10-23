@@ -44,6 +44,11 @@ class PagesController extends Controller {
 			'message' => 'required|min:10',
             'subject' => 'required|min:5',
 		]);
+
+		if(!empty($request->website ))
+		{
+			return redirect('/');	
+		}
 		$data = array(
 			'email'=> $request->email,
 			'subject'=> $request->subject,

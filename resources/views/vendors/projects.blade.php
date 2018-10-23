@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container-fluid m-3">
+     @include('partials.messages')
         <div class="col-md-9 mx-auto">
             <div class="row">
                 <nav class="col-md-3 mb-3">
@@ -28,7 +29,7 @@
                       </div>
                     </div>
                 </nav>
-                <div class="col-md-9">
+                <main class="col-md-9">
                     <div class="card block">
                       <div class="card-header text-white bg1">
                        <h5>Projects</h5>
@@ -62,15 +63,18 @@
                          <div class="row">
                         @foreach($projects as $project)
                           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                          <figure class="figure">
                           <a href="{{route('projects.view',$project->slug)}}" class="d-block mb-4 h-100">
-                          <img class="img-fluid img-thumbnail" src="{{ $project->first_image['path'] }}" alt="">
+                          <img class="figure-img img-fluid img-thumbnail" src="{{ $project->first_image['path'] }}" alt="">
                           </a>
+                          <figcaption class="figure-caption"><strong>{{$project->name}}</strong></figcaption>
+                          </figure>
                           </div>
                         @endforeach
                    </div>
                       </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
        <!-- <div class="col-md-6 mx-auto">
@@ -89,7 +93,6 @@
     {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/stand-alone-button.js')) !!}
   </script>
     <script>
-         $('#lfm').filemanager('image', {prefix: route_prefix});
-         $('#lfmvideo').filemanager('video', {prefix: route_prefix});
+         $('#lfm').filemanager('file', {prefix: route_prefix});
     </script>
     @endsection
