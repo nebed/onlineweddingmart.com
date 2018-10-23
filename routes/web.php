@@ -48,8 +48,8 @@ Route::group(['prefix' => 'vendor'], function () {
 	Route::get('projects/{slug}', 'ProjectController@show')->name('projects.view')->where('slug', '[\w\d\-\_]{5,70}');
 	Route::post('password/email','Auth\ForgotVendorPasswordController@sendResetLinkEmail')->name('vendor.password.email');
 	Route::get('password/reset','Auth\ForgotVendorPasswordController@showLinkRequestForm')->name('vendor.password.request');
-	Route::post('password/reset','Auth\ForgotVendorPasswordController@reset');
-	Route::get('password/reset/{token}', 'Auth\ForgotVendorPasswordController@showResetForm')->name('vendor.password.reset');
+	Route::post('password/reset','Auth\ResetVendorPasswordController@reset')->name('password.vendor.reset');
+	Route::get('password/reset/{token}', 'Auth\ResetVendorPasswordController@showResetForm')->name('vendor.password.reset');
 });
 Route::group(['prefix' => 'user'], function () {
 	Route::get('register', 'Auth\RegisterCustomerController@showRegister')->name('register.customer');
@@ -62,8 +62,8 @@ Route::group(['prefix' => 'user'], function () {
 	Route::get('dashboard', 'CustomerController@getProfile')->name('customer.dashboard');
 	Route::post('password/email','Auth\ForgotCustomerPasswordController@sendResetLinkEmail')->name('customer.password.email');
 	Route::get('password/reset','Auth\ForgotCustomerPasswordController@showLinkRequestForm')->name('customer.password.request');
-	Route::post('password/reset','Auth\ForgotCustomerPasswordController@reset');
-	Route::get('password/reset/{token}', 'Auth\ForgotCustomerPasswordController@showResetForm')->name('customer.password.reset');
+	Route::post('password/reset','Auth\ResetCustomerPasswordController@reset')->name('password.customer.reset');;
+	Route::get('password/reset/{token}', 'Auth\ResetCustomerPasswordController@showResetForm')->name('customer.password.reset');
 	Route::post('addreview','ReviewController@create')->name('add.review');
 	Route::post('shortlist','WishlistController@add')->name('add.wishlist');
 	Route::post('yourwedding/create','WeddingController@store')->name('create.wedding');

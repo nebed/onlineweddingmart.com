@@ -48,7 +48,7 @@ class ConfirmVendorController extends Controller
         $vendor->confirm_code="";
         $vendor->save();
         Session::flash('success','Your Email has been confirmed successfully');
-        return view('/vendor/login');
+        return redirect()->route('vendor.login');
     }
 
 }
