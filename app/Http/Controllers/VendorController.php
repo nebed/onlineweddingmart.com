@@ -108,7 +108,7 @@ class VendorController extends Controller
             $isImage = $file_uploaded->getClientOriginalExtension();
             if (in_array($isImage , $extensions)){
                 $filename = time().'.'.$isImage;
-                $location = public_path('images\\'.$filename);
+                $location = public_path('images/'.$filename);
                 Image::make($file_uploaded)->fit(900, 600, function ($constraint) { $constraint->upsize();})->save($location);
                 $vendor->image = $filename;
             }
@@ -170,5 +170,11 @@ class VendorController extends Controller
         }
         $completepercent = round((1- ($countempty/$countall)) * 100);
         return view('vendors.profile')->withVendor($vendor)->withLocations($loc)->withServices($serv)->withCompletepercent($completepercent);
+    }
+
+    public function getReviews()
+    {
+        $vendor = Vendor::findOrFail(auth('vendor')->id());
+        return view('vendors.reviews')->withVendor($vendor);
     }
 }

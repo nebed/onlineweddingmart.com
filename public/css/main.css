@@ -33,9 +33,7 @@ Title           : 18px/1.6 '', Arial, sans-serif;
 Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
 -------------------------------------------------------------------*/
-html{
-  zoom: 80%;
-}
+
 
 .profile-img {
     overflow: hidden;

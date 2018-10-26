@@ -22,6 +22,7 @@ class LoginVendorController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    protected $redirectTo = '/vendor/profile';
 
     public function __construct()
     {

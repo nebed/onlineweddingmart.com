@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Customer;
 use Socialite;
 use Session;
+use Validator;
 //use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginCustomerController extends Controller
@@ -104,8 +105,13 @@ class LoginCustomerController extends Controller
     {
 
         $user = Socialite::driver('facebook')->user();
-
+        
         $authUser = $this->findOrCreateUser($user, 'facebook');
+        if($authUser == false)
+        {
+            Session::flash('info','sorry a user registered with that email exists already');
+            return redirect()->route('login.customer');
+        }
         Auth::guard('customer')->login($authUser, true);
         Session::flash('success','youve been logged in successfully');
         return redirect($this->redirectTo);
@@ -118,11 +124,15 @@ class LoginCustomerController extends Controller
         if ($authUser) {
             return $authUser;
         }
-        return Customer::create([
+        else if(empty(Customer::where('email', $user->email)->first())) 
+        {
+            return Customer::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => 'facebook',
             'provider_id' => $user->id,
-        ]);
+            ]);
+        }
+        return false;
     }
 }

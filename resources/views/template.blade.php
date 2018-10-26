@@ -11,6 +11,7 @@
 
     <!-- Title Page-->
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" href="{{URL::asset('images/icons/favicon.png')}}"/>
 
      <!-- Fontfaces CSS-->
     {!!Html::style('css/font-face.css')!!}

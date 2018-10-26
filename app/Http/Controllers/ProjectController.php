@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Vendor;
 use App\ProjectSlug;
 use App\Photo;
+use Session;
 
 class ProjectController extends Controller
 {
@@ -101,8 +102,18 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($project)
     {
-        //
+        $projectto = Project::find($project);
+        $projectto->delete();
+        $photos = Photo::where('project_id',$project)->get();
+        foreach($photos as $photo)
+        {
+            $photo->project_id = 0;
+            $photo->save();
+        }
+        Session::flash('success','The project has been deleted successfully');
+        return redirect()->route('vendor.projects');
+
     }
 }

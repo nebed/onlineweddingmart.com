@@ -52,5 +52,10 @@ class Customer extends Authenticatable
         return $this->hasMany('App\Review');
     }
 
+    public function shortlists()
+    {
+        return $this->hasMany('App\Shortlist');
+    }
+
 
 }

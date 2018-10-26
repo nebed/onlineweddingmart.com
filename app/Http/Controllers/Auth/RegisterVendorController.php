@@ -32,7 +32,7 @@ class RegisterVendorController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/vendor/profile';
+    protected $redirectTo = '/vendor/login';
 
     /**
      * Create a new controller instance.

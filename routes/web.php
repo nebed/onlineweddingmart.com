@@ -45,6 +45,7 @@ Route::group(['prefix' => 'vendor'], function () {
 	Route::get('reviews', 'VendorController@getReviews')->name('vendor.reviews');
 	Route::get('confirm_email/{confirm_code}', 'Auth\ConfirmVendorController@confirm')->name('confirm.vendoremail');
 	Route::post('projects/create', 'ProjectController@store')->name('projects.create');
+	Route::delete('projects/{id}/destroy', 'ProjectController@destroy')->name('project.destroy');
 	Route::get('projects/{slug}', 'ProjectController@show')->name('projects.view')->where('slug', '[\w\d\-\_]{5,70}');
 	Route::post('password/email','Auth\ForgotVendorPasswordController@sendResetLinkEmail')->name('vendor.password.email');
 	Route::get('password/reset','Auth\ForgotVendorPasswordController@showLinkRequestForm')->name('vendor.password.request');
@@ -65,15 +66,18 @@ Route::group(['prefix' => 'user'], function () {
 	Route::post('password/reset','Auth\ResetCustomerPasswordController@reset')->name('password.customer.reset');;
 	Route::get('password/reset/{token}', 'Auth\ResetCustomerPasswordController@showResetForm')->name('customer.password.reset');
 	Route::post('addreview','ReviewController@create')->name('add.review');
-	Route::post('shortlist','WishlistController@add')->name('add.wishlist');
+	Route::post('shortlist','ShortlistController@add')->name('add.wishlist');
 	Route::post('yourwedding/create','WeddingController@store')->name('create.wedding');
 });
 Route::group(['prefix' => 'admin'], function () {
 	Route::post('posts/{post}/redact', ['as' => 'posts.redact', 'uses' => 'PostController@redact']);
 	Route::post('posts/{post}/publish', ['as' => 'posts.publish', 'uses' => 'PostController@publish']);
 	Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+	Route::get('categoriesandlocations', 'AdminController@categoriesandlocations')->name('admin.catandloc');
 	Route::resource('posts', 'PostController');
 	Route::resource('vendors', 'AdminVendorController');
+	Route::resource('categories', 'AdminCategoryController');
+	Route::resource('locations', 'AdminLocationController');
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::post('logout', 'Auth\LoginController@logout')->name('logout');

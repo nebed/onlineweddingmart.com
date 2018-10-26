@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Customer;
+use Datetime;
 
 class CustomerController extends Controller
 {
@@ -102,6 +103,11 @@ class CustomerController extends Controller
     public function getProfile()
     {
         $customer = Customer::findOrFail(auth('customer')->id());
-        return view('customers.dashboard')->withCustomer($customer); 
+        $eta = '';
+        if($customer->wedding)
+        {
+            $eta = (new Datetime($customer->wedding->date))->diff(new Datetime('now'));
+        }
+        return view('customers.dashboard')->withCustomer($customer)->withEta($eta); 
     }
 }

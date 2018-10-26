@@ -10,4 +10,9 @@ class Review extends Model
     {
     	$this->belongsTo('App\Customer');
     }
+
+    public function vendor()
+    {
+    	$this->hasOne('App\Vendor');
+    }
 }

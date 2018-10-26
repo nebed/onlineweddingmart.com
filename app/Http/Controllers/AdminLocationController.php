@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Vendor;
-use App\Customer;
-use App\Project;
-use App\Photo;
-use App\Booking;
-use App\Service;
 use App\Location;
+use Session;
 
-class AdminController extends Controller
+class AdminLocationController extends Controller
 {
-   
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,20 +17,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        $vendors = Vendor::all();
-        $customers = Customer::all();
-        $photos = Photo::all();
-        $bookings = Booking::all();
-        return view('admin.dashboard')->withCustomers($customers)->withVendors($vendors)->withPhotos($photos)->withBookings($bookings);
-    }
-
-    public function categoriesandlocations()
-    {
-        $categories = Service::all();
-        $locations = Location::all();
-        return view('admin.categoriesandlocations.index')->withCategories($categories)->withLocations($locations);
+        //
     }
 
     /**
@@ -57,7 +40,16 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name1' => 'required|max:255',
+            'slug1'=> 'required|alpha_dash|unique:locations',
+        ));
+        $location = new Location;
+        $location->name = $request->name1;
+        $location->slug = $request->slug1;
+        $location->save();
+        Session::flash('success','The Location has been added successfully');
+        return redirect()->route('admin.catandloc');
     }
 
     /**
@@ -68,7 +60,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-       
+        
     }
 
     /**
@@ -91,7 +83,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

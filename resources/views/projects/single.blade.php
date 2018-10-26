@@ -1,13 +1,13 @@
 @extends('main')
 
-@section('title', 'Profile | OWM')
+@section('title', 'Album | OWM')
 
 @section('stylesheet')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 <link rel="stylesheet" href="/css/photos.css">
 @endsection
 @section('content')
-    <div class="container-fluid m-3">
+    <div class="container-fluid mt-3 mb-3">
         <div class="col-md-9 mx-auto">
             <div class="row">
                 <nav class="col-md-3 mb-3">
@@ -19,10 +19,10 @@
                        <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                           <li class="nav-item">
-                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Information</strong></a>
+                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Business Profile</strong></a>
                           </li>
                            <li class="nav-item">
-                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Projects</strong></a>
+                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Business Gallery</strong></a>
                         </li>
                         <li class="nav-item">
                         <a style="color:#ffff;" class="nav-link" href="{{route('vendor.reviews')}}"><i class="zmdi zmdi-star"></i><strong class="card-text">    Reviews</strong></a>
@@ -48,6 +48,9 @@
                           </div>
                           @endforeach
                         </div>
+                        {{Form::open(['route'=>['project.destroy',$project->id],'method'=>'DELETE'])}}
+                        {{Form::submit('Delete Project', ['class'=>'btn bg1 hov-btn2 btn-block text-white mt-4'])}}
+                        {{Form::close()}}
                       </div>
                     </div>
                 </main>

@@ -22,7 +22,7 @@
                                 <i class="zmdi zmdi-close-circle"></i>
                             </span>
                         </button>
-                    </div>
+    </div>
 
 @endif
 

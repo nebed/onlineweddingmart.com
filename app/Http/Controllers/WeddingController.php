@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Wedding;
 use Illuminate\Http\Request;
+use Session;
+use App\Checklist;
 use Response;
 
 class WeddingController extends Controller
@@ -57,7 +59,42 @@ class WeddingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'date'=> array('required', 'regex:/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/')
+
+        ));
+        $wedding = new Wedding;
+        $wedding->name = $request->name;
+        $wedding->date = $request->date;
+        $wedding->customer_id = auth('customer')->id();
+        $wedding->save();
+        $checklist = new Checklist;
+        $checklist->wedding_id = $wedding->id;
+        $checklist->save();
+        Session::flash('info','We Have Saved The Date');
+        return redirect()->route('customer.dashboard'); 
+        /*$validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'date'=> 'required|regex:/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/'
+        ]);
+
+        if ($validator->fails()) 
+        {
+            return Response::json('no', 205);    
+        } else 
+        {
+            $wedding = new Wedding;
+            $wedding->name = $request->name;
+            $wedding->date = $request->date;
+            $wedding->customer_id = auth('customer')->id();
+            $wedding->save();
+            $response = array(
+                'name' => $wedding->name,
+                'date' => $wedding->date
+            );
+            return Response::json($response, 200);
+        } */
     }
 
     /**

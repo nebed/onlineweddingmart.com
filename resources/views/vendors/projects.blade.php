@@ -1,9 +1,9 @@
 @extends('main')
 
-@section('title', 'Profile | OWM')
+@section('title', 'Gallery | OWM')
 
 @section('content')
-    <div class="container-fluid m-3">
+    <div class="container-fluid mt-3 mb-3">
      @include('partials.messages')
         <div class="col-md-9 mx-auto">
             <div class="row">
@@ -16,10 +16,10 @@
                        <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                           <li class="nav-item">
-                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Information</strong></a>
+                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Business Profile</strong></a>
                           </li>
                            <li class="nav-item">
-                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Projects</strong></a>
+                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Business Gallery</strong></a>
                         </li>
                         <li class="nav-item">
                         <a style="color:#ffff;" class="nav-link" href="{{route('vendor.reviews')}}"><i class="zmdi zmdi-star"></i><strong class="card-text">    Reviews</strong></a>
@@ -32,13 +32,13 @@
                 <main class="col-md-9">
                     <div class="card block">
                       <div class="card-header text-white bg1">
-                       <h5>Projects</h5>
+                       <h5>Albums</h5>
                       </div>
                       <div class="card-body">
                         {!!Form::open(['route'=>'projects.create', 'method' => 'post'])!!}
                         <!---New-->
                         <div class="form-group row">
-                      <label class="col-12 col-sm-3 col-form-label text-sm-right">Project Details</label>
+                      <label class="col-12 col-sm-3 col-form-label text-sm-right">Album Details</label>
                       <div class="col-12 col-sm-8 col-lg-6">
                           {{Form::text('project_name',null,['class'=>'form-control','placeholder'=>'Project Name*'])}}
                         <div class=" mt-3 mb-3">

@@ -36,6 +36,11 @@
                                     <i class="fas fa-copy"></i>
                                     <span class="bot-line"></span>Posts</a>
                             </li>
+                            <li>
+                                <a href="/admin/categoriesandlocations">
+                                    <i class="fas fa-copy"></i>
+                                    <span class="bot-line"></span>Categories & Locations</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="header__tool">
@@ -171,8 +176,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin">
+                        <a class="logo" href="/admin/dashboard">
+                            <img src="{{URL::asset("images/icons/logo-02.png")}}" alt="CoolAdmin">
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -188,7 +193,7 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <!--<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="index.html">Dashboard 1</a>
                                 </li>
@@ -201,29 +206,13 @@
                                 <li>
                                     <a href="index4.html">Dashboard 4</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                            <a href="/admin/posts">
+                                <i class="fas fa-chart-bar"></i>Posts</a>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
+                        <!--<li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Posts</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -276,7 +265,7 @@
                                     <a href="typo.html">Typography</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </nav>
@@ -364,7 +353,7 @@
                             <img src="images/icon/avatar-01.jpg" alt="John Doe">
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
+                            <a class="js-acc-btn" href="#">{{Auth::user()->name}}</a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -375,9 +364,9 @@
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">john doe</a>
+                                        <a href="#">{{Auth::user()->name}}</a>
                                     </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                    <span class="email">{{Auth::user()->email}}</span>
                                 </div>
                             </div>
                             <div class="account-dropdown__body">

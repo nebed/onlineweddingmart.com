@@ -77,8 +77,8 @@
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--blue">
-                                <h2 class="number">1,086</h2>
-                                <span class="desc">this week</span>
+                                <h2 class="number">{{$bookings->count()}}</h2>
+                                <span class="desc">Photos</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-calendar-note"></i>
                                 </div>
@@ -86,8 +86,8 @@
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--red">
-                                <h2 class="number">$1,060,386</h2>
-                                <span class="desc">total earnings</span>
+                                <h2 class="number">{{$bookings->count()}}</h2>
+                                <span class="desc">Bookings</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-money"></i>
                                 </div>
@@ -116,6 +116,7 @@
                                             </th>
                                             <th>name</th>
                                             <th>email</th>
+                                            <th>vendor type</th>
                                             <th>brand name</th>
                                             <th>location</th>
                                             <th>contact number</th>
@@ -138,6 +139,7 @@
                                             <td>
                                                 <span class="block-email">{{$vendors->email}}</span>
                                             </td>
+                                            <td>{{$vendors->service->name}}</td>
                                             <td class="desc">{{$vendors->brand_name}}</td>
                                             <td>{{$vendors->location->name}}</td>
                                             <td>{{$vendors->contact_number}}</td>
@@ -166,6 +168,53 @@
                                                         <i class="zmdi zmdi-more"></i>
                                                     </a>
                                                 	</form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="spacer"></tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Customers</h3>
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </th>
+                                            <th>name</th>
+                                            <th>email</th>
+                                            <th>date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($customers as $customer)
+                                        <tr class="tr-shadow">
+                                            <td>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </td>
+                                            <td>{{$customer->name}}</td>
+                                            <td>
+                                                <span class="block-email">{{$customer->email}}</span>
+                                            </td>
+                                            <td class="desc">{{date('F j, Y g:ia',strtotime($customer->created_at))}}</td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <a class="item" href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

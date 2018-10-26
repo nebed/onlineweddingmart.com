@@ -2,41 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Shortlist;
 use Illuminate\Http\Request;
-use App\Vendor;
-use App\Customer;
-use App\Project;
-use App\Photo;
-use App\Booking;
-use App\Service;
-use App\Location;
 
-class AdminController extends Controller
+class ShortlistController extends Controller
 {
-   
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        $vendors = Vendor::all();
-        $customers = Customer::all();
-        $photos = Photo::all();
-        $bookings = Booking::all();
-        return view('admin.dashboard')->withCustomers($customers)->withVendors($vendors)->withPhotos($photos)->withBookings($bookings);
-    }
-
-    public function categoriesandlocations()
-    {
-        $categories = Service::all();
-        $locations = Location::all();
-        return view('admin.categoriesandlocations.index')->withCategories($categories)->withLocations($locations);
+        //
     }
 
     /**
@@ -63,21 +41,21 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Shortlist  $shortlist
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Shortlist $shortlist)
     {
-       
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Shortlist  $shortlist
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Shortlist $shortlist)
     {
         //
     }
@@ -86,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Shortlist  $shortlist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Shortlist $shortlist)
     {
         //
     }
@@ -97,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Shortlist  $shortlist
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Shortlist $shortlist)
     {
         //
     }

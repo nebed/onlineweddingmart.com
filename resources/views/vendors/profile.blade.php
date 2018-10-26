@@ -8,7 +8,7 @@
 
 @section('content')
         <!--Profile Content -->
-        <div class="container-fluid m-3">
+        <div class="container-fluid mt-3 mb-3">
           @include('partials.messages')
             <div class="col-md-10 mx-auto">
             <div class="row">
@@ -21,10 +21,10 @@
                        <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                           <li class="nav-item">
-                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Information</strong></a>
+                          <a style="color:#ffff;" class="nav-link active" href="{{route('vendor.profile')}}"><i class="zmdi zmdi-info"></i><strong class="card-text">    Business Profile</strong></a>
                           </li>
                            <li class="nav-item">
-                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Projects</strong></a>
+                        <a style="color:#ffff;" class="nav-link" href="{{route('vendor.projects')}}"><i class="zmdi zmdi-collection-image-o"></i><strong class="card-text">    Business Gallery</strong></a>
                         </li>
                         <li class="nav-item">
                         <a style="color:#ffff;" class="nav-link" href="{{route('vendor.reviews')}}"><i class="zmdi zmdi-star"></i><strong class="card-text">    Reviews</strong></a>
@@ -61,9 +61,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card block">
+                    <div class="card block mt-3">
                       <div class="card-header text-white bg1">
-                        <h5>Personal Information</h5>
+                        <h5>Business Information</h5>
                       </div>
                       <div class="card-body">
                         {!! Form::model($vendor, ['route'=>['vendor.update', $vendor->id], 'method' => 'PUT', 'files'=>true]) !!}

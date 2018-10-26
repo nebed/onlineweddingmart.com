@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->  
-    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+    <link rel="icon" type="image/png" href="{{URL::asset('images/icons/favicon.png')}}"/>
 <!--===============================================================================================-->
    {!! Html::style('/vendor/bootstrap/css/bootstrap.min.css')!!}
 <!--===============================================================================================-->
@@ -384,7 +384,7 @@
                 <div class="w-full">
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'vendor.logout'])!!}
-                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'])}}
+                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg1 hov-btn2 bor2  p-lr-15 trans-04 m-r-8 m-b-10'])}}
                         {!!Form::close()!!}
                     </div>
                 </div>
@@ -412,7 +412,7 @@
 
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'customer.logout'])!!}
-                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'])}}
+                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10'])}}
                         {!!Form::close()!!}
                     </div>
                 </div>
@@ -440,7 +440,7 @@
 
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'logout'])!!}
-                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'])}}
+                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10'])}}
                         {!!Form::close()!!}
                     </div>
                 </div>
