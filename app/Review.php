@@ -8,11 +8,11 @@ class Review extends Model
 {
     public function customer()
     {
-    	$this->belongsTo('App\Customer');
+    	return $this->belongsTo('App\Customer');
     }
 
     public function vendor()
     {
-    	$this->hasOne('App\Vendor');
+    	return $this->belongsTo('App\Vendor');
     }
 }

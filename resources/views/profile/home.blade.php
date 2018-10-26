@@ -1,6 +1,10 @@
 @extends('main')
 
-@section('title','Vendors | OWM')
+@section('title','Vendor Profile | OWM')
+
+@section('stylesheet')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 
 @section('content')
 
@@ -44,7 +48,7 @@
 					
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+						<h4 vendorid="{{$profile->id}}" id="vendor" class="mtext-105 cl2 js-name-detail p-b-14">
 							{{$profile->name}}
 						</h4>
 
@@ -54,7 +58,7 @@
 						</span>
 
 						<h1 class="ltext-103 cl0">
-							<span class="badge bg11 badge-dark"><i class="zmdi zmdi-star"></i> {{!empty($profile->reviews->average('rating')) ? $profile->reviews->average('rating'):"0.0"}}</span>
+							<span class="badge bg11 badge-dark"><i class="zmdi zmdi-star"></i> {{!empty($profile->reviews->average('rating')) ? round($profile->reviews->average('rating'),1):"0.0"}}</span>
 						</h1>
 						<p class="stext-102">{{$profile->reviews->count()}} Reviews</p>
 
@@ -114,7 +118,7 @@
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04 js-addwish-detail">
 										Shortlist
 									</button>
 								</div>
@@ -151,7 +155,7 @@
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Portfolio Albums ({{$profile->projects->count()}})</a>
 						</li>
 
 						<li class="nav-item p-b-10">
@@ -172,61 +176,26 @@
 
 						<!-- - -->
 						<div class="tab-pane fade" id="information" role="tabpanel">
-							<div class="row">
-								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<ul class="p-lr-28 p-lr-15-sm">
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Weight
-											</span>
+							<div class="tz-gallery">
 
-											<span class="stext-102 cl6 size-206">
-												0.79 kg
-											</span>
-										</li>
+						        <div class="row">
 
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Dimensions
-											</span>
+						        	@foreach($profile->projects as $project)
 
-											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
-											</span>
-										</li>
+						            <div class="col-sm-6 col-md-4">
+						                <div class="thumbnail">
+						                    <a class="lightbox" href="{{route('project.view', $project->slug)}}">
+						                        <img data-src="{{$project->first_image['path'] }}}" alt="{{$project->name}}">
+						                    </a>
+						                    <div class="caption">
+						                        <h5 class="mtext-104 cl2">{{$project->name}}</h5>
+						                    </div>
+						                </div>
+						            </div>
+						            @endforeach
+						        </div>
 
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Materials
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												60% cotton
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Color
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
-											</span>
-										</li>
-									</ul>
-								</div>
-							</div>
+						    </div>
 						</div>
 
 						<!-- - -->
@@ -235,37 +204,11 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
 
-										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img data-src="{{URL::asset('images/avatar-01.jpg')}}" alt="AVATAR">
-											</div>
-
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Sample Review
-													</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
-												</div>
-
-												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-												</p>
-											</div>
-										</div>
-
 										@foreach($profile->reviews as $review)
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img data-src="{{URL::asset('images/avatar-01.jpg')}}" alt="AVATAR">
+												<img data-src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($review->customer->email))). "?s=50&d=monsterid" }}" alt="AVATAR">
 											</div>
 
 											<div class="size-207">
@@ -291,7 +234,7 @@
 
 										
 										<!-- Add review -->
-										<form class="w-full" action="{{route('add.review')}}" method='POST' >
+										<form id="addreview" class="w-full" action="{{route('add.review')}}" method='POST' >
 											{{csrf_field()}}
 											<h5 class="mtext-108 cl2 p-b-7">
 												Add a review
@@ -305,6 +248,7 @@
 												<span class="stext-102 cl3 m-r-16">
 													Your Rating
 												</span>
+												<input type="hidden" name="vendor_id" value="{{$profile->id}}">
 
 												<span class="wrap-rating fs-18 cl11 pointer">
 													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
@@ -320,11 +264,6 @@
 												<div class="col-12 p-b-5">
 													<label class="stext-102 cl3" for="review">Your review</label>
 													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="comment"></textarea>
-												</div>
-
-												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
 												</div>
 											</div>
 
@@ -436,30 +375,55 @@
         {{Html::script('/vendor/isotope/isotope.pkgd.min.js')}}
         {{Html::script('/vendor/sweetalert/sweetalert.min.js')}}
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+		$('.js-addwish-b2, .js-addwish-detail, .shortlistvendor').on('click', function(e){
 			e.preventDefault();
 		});
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.vendor-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
 		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
-				swal(nameProduct, "has been shortlisted !", "success");
-
+				var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+				var vendorId = $(this).parent().parent().parent().parent().find('.js-name-detail').attr('vendorid');
+				$.ajaxSetup({
+			    headers: {
+    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  					}
+				});
+			   $.ajax({
+			       type: "POST",
+			       url: '/user/shortlist/create',
+			       data: { vendor_id:vendorId },
+			       success: function( data ) {
+			       		var nameProduct = $('#vendor').html();
+			           swal(nameProduct, "has been shortlisted !", "success");
+			       },
+			       error: function() {
+			       		var nameProduct = $('#vendor').html();
+			          swal(nameProduct, "was not shortlisted, you need to be signed in!", "error");
+			       }
+			   });
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
+
+		$('#addreview').on('submit', function(e) {
+       e.preventDefault(); 
+       $.ajaxSetup({
+        header:$('meta[name="_token"]').attr('content')
+    	});
+       $.ajax({
+           type: "POST",
+           url: '/user/addreview',
+           data: $(this).serialize(),
+           success: function( data ) {
+               swal('', "Your review has been added !", "success");
+           },
+	       error: function() {
+	          swal('', "Your review couldn't be added, Are you signed in?", "error");
+	       }
+       	});
+   		});
 
 		/*---------------------------------------------*/
 

@@ -4,7 +4,7 @@
 
 @section('stylesheet')
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-<link rel="stylesheet" href="/css/photos.css">
+<link rel="stylesheet" href="{{URL::asset('/css/photos.css')}}">
 @endsection
 @section('content')
     <div class="container-fluid mt-3 mb-3">
@@ -67,7 +67,7 @@
     @section('script')
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
      <script>
-   var route_prefix = "http://localhost:8000/laravel-filemanager";
+   var route_prefix = "https://onlineweddingmart.com/laravel-filemanager";
   </script>
     <script>
     {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/stand-alone-button.js')) !!}

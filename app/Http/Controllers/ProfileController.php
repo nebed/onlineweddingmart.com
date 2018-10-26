@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vendor;
+use App\Project;
 
 class ProfileController extends Controller
 {
@@ -27,6 +28,12 @@ class ProfileController extends Controller
         $profile = Vendor::where('slug',$name)->first();
         $category =  $profile->service->id;
         $similarvendors = Vendor::where('service_id', $category)->orderBy('created_at','desc')->take(8)->get();        return view('profile.home')->withProfile($profile)->withSimilarvendors($similarvendors);
+    }
+
+    public function getProject($name)
+    {
+        $project = Project::where('slug',$name)->first();
+        return view('profile.project')->withProject($project);
     }
 
     /**

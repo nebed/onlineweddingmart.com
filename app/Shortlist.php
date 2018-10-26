@@ -8,6 +8,11 @@ class Shortlist extends Model
 {
     public function vendor()
     {
-    	return $this->hasOne('App\Vendor');
+    	return $this->belongsTo('App\Vendor');
+    }
+
+    public function customer()
+    {
+    	return $this->belongsTo('App\Customer');
     }
 }

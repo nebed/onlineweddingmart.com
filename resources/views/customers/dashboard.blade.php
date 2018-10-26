@@ -135,19 +135,25 @@
                         @foreach($customer->shortlists as $shortlist)
                         @if(!$shortlist->finalized)
                         <li class="flex-w flex-t p-b-30">
-                          <a href="/profile/{{$shortlist->vendor->slug}}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
+                          <a href="/profile/{{$shortlist->vendor->slug}}" class="wrao-pic-w size-214 m-r-20">
                             <img src="{{URL::asset('images/'.$shortlist->vendor->image)}}" alt="PRODUCT">
                           </a>
 
                           <div class="size-215 flex-col-t p-t-8">
-                            <a href="/profile/{{$shortlist->vendor->slug}}" class="stext-116 cl8 hov-cl1 trans-04">
+                            <a href="/profile/{{$shortlist->vendor->slug}}" class="stext-116 cl2 hov-cl1 trans-04">
                               {{$shortlist->vendor->name}}
                             </a>
-
-                            <span class="stext-105 cl0">
-                            <i class="icon-filter cl0 m-r-6 fs-22 trans-04 zmdi zmdi-pin"></i>
+                            <span class="stext-105 cl2">
+                            {{$shortlist->vendor->service->name}}
+                            </span>
+                            <p><span class="stext-105 cl2">
+                            <i class="icon-filter cl2 m-r-6 fs-22 trans-04 zmdi zmdi-pin"></i>
                             {{$shortlist->vendor->location->name}}
                             </span>
+                            <span vendorid="{{$shortlist->vendor->id}}" class="stext-105 cl2">
+                            <button class="hov-btn2 bg1 btn cl0 finalize-vendor">Finalize</button>
+                            </span>
+                            </p>
                           </div>
                         </li>
                         @endif
@@ -232,5 +238,9 @@
 	</div>
           
 </div>
+
+@endsection
+
+@section('script')
 
 @endsection

@@ -27,6 +27,7 @@ Route::group(['prefix' => 'vendors'], function () {
 
 Route::group(['prefix' => 'profile'], function () {
 	Route::get('{name}', 'ProfileController@getProfile')->name('vendors.profile')->where('name', '[\w\d\-\_]{5,70}');
+	Route::get('project/{name}', 'ProfileController@getProject')->name('project.view')->where('name', '[\w\d\-\_]{5,70}');
 });
 
 Route::get('blog/category/{name}', ['uses'=> 'BlogController@getCategory', 'as' => 'blog.category'])->where('name', '[\w\d\-\_]{5,70}');
@@ -61,11 +62,12 @@ Route::group(['prefix' => 'user'], function () {
 	Route::get('login/facebook', 'Auth\LoginCustomerController@redirectToProvider')->name('facebook.redirect');
 	Route::get('login/facebook/callback', 'Auth\LoginCustomerController@handleProviderCallback')->name('facebook.login');
 	Route::get('dashboard', 'CustomerController@getProfile')->name('customer.dashboard');
+	Route::post('shortlist/create', 'ShortlistController@create')->name('shortlist.create');
 	Route::post('password/email','Auth\ForgotCustomerPasswordController@sendResetLinkEmail')->name('customer.password.email');
 	Route::get('password/reset','Auth\ForgotCustomerPasswordController@showLinkRequestForm')->name('customer.password.request');
 	Route::post('password/reset','Auth\ResetCustomerPasswordController@reset')->name('password.customer.reset');;
 	Route::get('password/reset/{token}', 'Auth\ResetCustomerPasswordController@showResetForm')->name('customer.password.reset');
-	Route::post('addreview','ReviewController@create')->name('add.review');
+	Route::post('addreview','ReviewController@store')->name('add.review');
 	Route::post('shortlist','ShortlistController@add')->name('add.wishlist');
 	Route::post('yourwedding/create','WeddingController@store')->name('create.wedding');
 });

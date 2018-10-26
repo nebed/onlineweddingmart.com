@@ -2,6 +2,10 @@
 
 @section('title','Vendors | OWM')
 
+@section('stylesheet')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
@@ -256,7 +260,7 @@
 							</div>
 							<div class="block2-txt bg1 flex-w flex-t p-3">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="/profile/{{$vendor->slug}}" class="stext-110 cl0 hov-cl2 trans-04 vendor-name p-b-6">
+									<a vendorid="{{$vendor->id}}" href="/profile/{{$vendor->slug}}" class="stext-110 cl0 hov-cl2 trans-04 vendor-name p-b-6">
 										{{$vendor->name}}
 									</a>
 									<span class="stext-105 cl0">
@@ -266,7 +270,7 @@
 								</div>
 								<div class="block2-txt-child2 flex-col-r p-t-3">
 									<h1 class="fs-20 cl0">
-									<span class="badge bg11 badge-dark"><i class="zmdi zmdi-star"></i> {{!empty($vendor->reviews->average('rating')) ? $vendor->reviews->average('rating'):"0.0"}}</span>
+									<span class="badge bg11 badge-dark"><i class="zmdi zmdi-star"></i> {{!empty($vendor->reviews->average('rating')) ? round($vendor->reviews->average('rating'),1):"0.0"}}</span>
 									</h1>
 									<a href="#" class="btn-addwish-b2 dis-block p-t-2 pos-relative js-addwish-b2">
 										<i class="icon-filter hov-cl2 cl0 m-r-6 fs-20 trans-04 zmdi zmdi-favorite"></i>
@@ -344,9 +348,25 @@
 		});
 
 		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.vendor-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				var nameProduct = $(this).parent().parent().find('.vendor-name').html();
+			    var vendorId = $(this).parent().parent().parent().parent().find('.vendor-name').attr('vendorid');
+			    $.ajaxSetup({
+			    headers: {
+    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  					}
+				});
+				$.ajax({
+			       type: "POST",
+			       url: '/user/shortlist/create',
+			       data: { vendor_id:vendorId },
+			       success: function( data ) {
+			           swal('The Vendor', "has been added to your shortlist !", "success");
+			       },
+			       error: function() {
+			          swal('The Vendor', "was not shortlisted, you need to be signed in!", "error");
+			       }
+			   });
 
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');

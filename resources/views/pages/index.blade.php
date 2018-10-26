@@ -794,7 +794,7 @@ Find the best wedding vendors </p>
                 </div>
 
                 <p class="stext-107 cl6 txt-center">
-Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://twitter.com/uchenebed" target="_blank">UcheNebed</a>
+Copyright ©OnlineWeddingMart <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://twitter.com/uchenebed" target="_blank">UcheNebed</a>
 
                 </p>
             </div>

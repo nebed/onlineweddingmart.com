@@ -37,124 +37,7 @@
 @yield('stylesheet')
 <!--===============================================================================================-->
 </head>
-  <body class="animsition">
-
-    <!--Modal Vendor Register-->
-    <div class="modal fade bd-example-modal-lg" id="modal-vendor-register" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-4">
-                    <img class="img-fluid" src="{!!URL::asset('images/signin1.jpg')!!}">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="txt-center">
-                        <h3>"Grow Your Business with OWM"</h3>
-                        <h5>Sign Up to access your Dasboard</h5>
-                    </div>
-                    <br>
-                      {!! Form::open(['route'=>'vendor.register']) !!}
-                      {{ csrf_field() }}
-                {{Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Your Name*' ])}}
-                <small id="emailHelp" class="form-text text-danger mb-1">Required*</small>
-                {{Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Your Email*'])}}
-                <small id="emailHelp" class="form-text text-danger  mb-1">Required*</small>
-                {{Form::text('brand_name',null,['class'=>'form-control', 'placeholder'=>'Brand Name*'])}}
-                <small id="emailHelp" class="form-text text-danger  mb-1">Required*</small>
-                  <select class="form-control" name="service_id">
-                    <option value=''>Select Vendor Type*</option>
-                    @foreach($servicesmenu as $service)
-                    <option value='{{$service->id}}'>{{$service->name}}</option>
-                    @endforeach
-
-                  </select>
-                  <small id="emailHelp" class="form-text text-danger mb-1">Required*</small>
-                  <select class="form-control" name="location_id">
-                    <option value=''>City (choose your base city here)*</option>
-                    @foreach($locationsmenu as $location)
-                    <option value='{{$location->id}}'>{{$location->name}}</option>
-                    @endforeach
-
-                  </select>
-                  <small id="emailHelp" class="form-text text-danger  mb-1">Required*</small>
-                {{Form::password('password',['class'=>'form-control','placeholder'=>'Password*'])}}
-               <small id="emailHelp" class="form-text text-danger  mb-1">Required*</small>
-                {{Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Confirm Password*'])}}
-                <small id="emailHelp" class="form-text text-danger  mb-1">Required*</small>
-                {{Form::submit('Sign Up',['class'=>'submit btn bg1 hov-btn2 form-control cl0'])}}
-
-                {!! Form::close() !!}
-                <div class="txt-center mt-5">
-                        <p>Already have an Accout? <a>Sign In</a>
-                 </div>
-
-                 <div class="">
-                    <a href="#" id="launch-vendor-login" class="btn flex-c-m trans-04 p-lr-25" data-toggle="modal" data-target=".vendorlogin">
-                            Vendor Login
-                        </a>
-                 </div>
-
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Vendor Login -->
-    <div id="modal-vendor-login" class="modal fade vendorlogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-4">
-                     <img class="img-fluid" src="{!!URL::asset('images/signin.jpg')!!}">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="txt-center">
-                        <h3>"Grow Your Business with OWM"</h3>
-                        <h5>Sign In to access your Dasboard</h5>
-                    </div>
-                    <br>
-                      {!! Form::open(['route'=>'vendor.login']) !!}
-                      {{ csrf_field() }}
-                {{Form::email('email',null,['class'=>'form-control mb-1', 'placeholder'=>'Your Email*'])}}
-                {{Form::password('password',['class'=>'form-control mb-1','placeholder'=>'Password*'])}}
-                {{Form::submit('Sign In',['class'=>'submit btn bg1 hov-btn2 form-control cl0'])}}
-
-                {!! Form::close() !!}
-                <div class="txt-center mt-5">
-                        <p>Don't have an account? <a>Sign Up</a>
-                 </div>
-
-                 <div class="">
-                    <a href="#" id="launch-vendor-register" class="btn flex-c-m trans-04 p-lr-25" data-toggle="modal" data-target=".bd-example-modal-lg">
-                            Vendor Sign Up
-                        </a>
-                 </div>
-                 
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-</div>
-    
+  <body class="animsition">    
     <!-- Header -->
     <!-- Header -->
     <header class="header-v2">
@@ -405,11 +288,16 @@
             
             <div class="header-cart-content flex-w js-pscroll">
                 
+                <ul class="header-cart-wrapitem w-full">
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="/user/dashboard" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                               Profile
+                            </a>
+                        </div>
+                    </li>
+                </ul>
                 <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Profile
-                    </div>
-
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'customer.logout'])!!}
                         {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10'])}}
@@ -564,7 +452,7 @@
                 </div>
 
                 <p class="stext-107 cl6 txt-center">
-Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://twitter.com/uchenebed" target="_blank">UcheNebed</a>
+Copyright © OnlineWeddingMart <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://twitter.com/uchenebed" target="_blank">UcheNebed</a>
 
                 </p>
             </div>
@@ -581,19 +469,6 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> All right
 <!--===============================================================================================-->
     {!!Html::script('/vendor/select2/select2.min.js')!!}
     {!!Html::script('/js/main.js')!!}
-        <script>
-
-        $('.gallery-lb').each(function() { // the containers for all your galleries
-            $(this).magnificPopup({
-                delegate: 'a', // the selector for gallery item
-                type: 'image',
-                gallery: {
-                    enabled:true
-                },
-                mainClass: 'mfp-fade'
-            });
-        });
-    </script>
     @yield('script')
         
 </body>

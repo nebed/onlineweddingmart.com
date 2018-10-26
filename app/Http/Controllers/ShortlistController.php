@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Shortlist;
 use Illuminate\Http\Request;
+use Response;
+use Auth;
 
 class ShortlistController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +25,20 @@ class ShortlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $vendor = $request->vendor_id;
+        if(Auth::guard('customer')->check())
+        {
+            $shortlist = new Shortlist;
+            $shortlist->vendor_id = $vendor;
+            $shortlist->customer_id = Auth::guard('customer')->user()->id;
+            $shortlist->save();
+            return Response::json('success', 200); 
+        }else
+        {
+            return Response::json('failed', 205);
+        }
     }
 
     /**
