@@ -11,6 +11,7 @@ use App\Location;
 use App\Post;
 use Mail;
 use Session;
+use App\Honeymoon;
 
 class PagesController extends Controller {
 
@@ -27,17 +28,33 @@ class PagesController extends Controller {
 		return view('pages.index')->withServices($services)->withLocations($locations)->withPosts($posts);
 	}
 
-	public function getAbout(){
+	public function getAbout()
+	{
 
 		return view('pages.about');
 	}
+
+	public function getPrivacy()
+	{
+
+		return view('pages.privacy');
+	}
 	
-	public function getContact(){
+	public function getContact()
+	{
 
 		return view('pages.contact');
 	}
 
-	public function postContact(Request $request){
+	public function getHoneymoon()
+	{
+		$honeymoons = Honeymoon::orderBy('created_at', 'desc')->get();
+
+		return view('pages.honeymoon')->withHoneymoons($honeymoons);
+	}
+
+	public function postContact(Request $request)
+	{
 
 		$this->validate($request, [
 			'email' => 'required|email|max:255',

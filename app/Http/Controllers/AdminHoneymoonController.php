@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Honeymoon;
 use Illuminate\Http\Request;
-use App\Location;
-use Session;
 
-class AdminLocationController extends Controller
+class AdminHoneymoonController extends Controller
 {
     public function __construct()
     {
@@ -19,7 +18,8 @@ class AdminLocationController extends Controller
      */
     public function index()
     {
-        //
+        $honeymoons = Honeymoon::all();
+        return view('admin.honeymoon.index')->withHoneymoons($honeymoons);
     }
 
     /**
@@ -29,7 +29,7 @@ class AdminLocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.honeymoon.create');
     }
 
     /**
@@ -40,36 +40,27 @@ class AdminLocationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array(
-            'name' => 'required|max:255',
-            'slug'=> 'required|alpha_dash|unique:locations',
-        ));
-        $location = new Location;
-        $location->name = $request->name;
-        $location->slug = $request->slug;
-        $location->save();
-        Session::flash('success','The Location has been added successfully');
-        return redirect()->route('admin.catandloc');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Honeymoon  $honeymoon
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Honeymoon $honeymoon)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Honeymoon  $honeymoon
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Honeymoon $honeymoon)
     {
         //
     }
@@ -78,21 +69,21 @@ class AdminLocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Honeymoon  $honeymoon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Honeymoon $honeymoon)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Honeymoon  $honeymoon
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Honeymoon $honeymoon)
     {
         //
     }

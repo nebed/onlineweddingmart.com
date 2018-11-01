@@ -14,6 +14,8 @@
 Route::get('/contact', 'PagesController@getContact')->name('contact');
 Route::post('/contact', 'PagesController@postContact');
 Route::get('/about', 'PagesController@getAbout')->name('about');
+Route::get('/privacy-policy', 'PagesController@getPrivacy')->name('privacy');
+Route::get('/honeymoon-package', 'PagesController@getHoneymoon')->name('honeymoon');
 Route::get('/home', 'PagesController@getIndex');
 Route::get('/', 'PagesController@getIndex');
 
@@ -80,6 +82,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('vendors', 'AdminVendorController');
 	Route::resource('categories', 'AdminCategoryController');
 	Route::resource('locations', 'AdminLocationController');
+	Route::resource('honeymoons', 'AdminHoneymoonController');
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::post('logout', 'Auth\LoginController@logout')->name('logout');

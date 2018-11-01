@@ -37,7 +37,7 @@ class BlogComposer
     public function compose(View $view)
     {
         $blogcategories = Category::all();
-        $vendors = Vendor::take(5)->get();
+        $vendors = Vendor::where('approved',true)->take(5)->get();
         $view->withBlogcategories($blogcategories)->withVendors($vendors);
     }
 }

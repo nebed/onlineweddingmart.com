@@ -122,7 +122,7 @@
 
 									<div class="size-215 flex-col-t p-t-8">
 										<a href="/profile/{{$vendor->slug}}" class="stext-116 cl8 hov-cl1 trans-04">
-											{{$vendor->name}}
+											{{$vendor->brand_name}}
 										</a>
 
 										<span class="stext-105 cl0">

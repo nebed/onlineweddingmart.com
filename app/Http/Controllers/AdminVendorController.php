@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Vendor;
 use App\Customer;
 use App\Project;
+use App\Shorlist;
+use App\Review;
+use Session;
 
 class AdminVendorController extends Controller
 {
@@ -94,6 +97,24 @@ class AdminVendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vendor= Vendor::find($id);
+        $reviews = Review::where('vendor_id',$id)->get();
+        foreach($reviews as $review)
+        {
+            $review->delete();
+        }
+        $shortlists = Shortlist::where('vendor_id',$id)->get();
+        foreach($shortlists as $shortlist)
+        {
+            $shortlist->delete();
+        }
+        $projects = Project::where('vendor_id', $id)->get();
+        foreach($projects as $project)
+        {
+            $project->vendor()->dissociate($vendor);
+        }
+        $vendor->delete();
+        Session::flash('success','The vendor was deleted successfully');
+        return redirect()->route('admin.dashboard');
     }
 }

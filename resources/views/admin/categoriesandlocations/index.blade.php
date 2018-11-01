@@ -30,8 +30,8 @@
                         <div class="col-md-6">
                         <div class="form-group">
                             {{Form::open(['route'=>'locations.store','method'=>'post'])}}
-                            {{Form::text('name1',null,['placeholder'=>'Location Name','class'=>'form-control'])}}
-                            {{Form::text('slug1',null,['placeholder'=>'Loaction URL, no spaces','class'=>'form-control'])}}
+                            {{Form::text('name',null,['placeholder'=>'Location Name','class'=>'form-control'])}}
+                            {{Form::text('slug',null,['placeholder'=>'Loaction URL, no spaces','class'=>'form-control'])}}
                             {{Form::submit('Create Location',['class'=>'btn btn-primary'])}}
                             {{Form::close()}}
                             </div>

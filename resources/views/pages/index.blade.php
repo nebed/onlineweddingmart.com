@@ -21,10 +21,6 @@
 <!--===============================================================================================-->
    <link rel="stylesheet" href="{!!URL::asset('vendor/animsition/css/animsition.min.css')!!}">
 <!--===============================================================================================-->
-   <link rel="stylesheet" href="{!!URL::asset('vendor/select2/select2.min.css')!!}">
-<!--===============================================================================================-->  
-   <link rel="stylesheet" href="{!!URL::asset('vendor/daterangepicker/daterangepicker.css')!!}">
-<!--===============================================================================================-->
     <link rel="stylesheet" href="{!!URL::asset('vendor/slick/slick.css')!!}">
 <!--===============================================================================================-->
    <link rel="stylesheet" href="{!!URL::asset('vendor/MagnificPopup/magnific-popup.css')!!}">
@@ -284,12 +280,14 @@
                 
                 <div class="w-full">
                     <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
+                        <a href="/user/dashboard" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                               Profile
+                            </a>
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
                         {!!Form::open(['route'=>'customer.logout'])!!}
-                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'])}}
+                        {{Form::submit('Logout',['class'=>'flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10'])}}
                         {!!Form::close()!!}
                     </div>
                 </div>
@@ -433,7 +431,7 @@ Find the best wedding vendors </p>
                     <div class="block1 wrap-pic-w">
                         <img data-src="images/banner-07.jpg" alt="IMG-BANNER">
 
-                        <a href="/vendors/all/traditional-wear" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <a href="/vendors/all/traditional-wears" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
                                     Traditional Wears
@@ -818,7 +816,6 @@ Copyright ©OnlineWeddingMart <script>document.write(new Date().getFullYear());<
    <script src="{!!URL::asset('vendor/bootstrap/js/popper.js')!!}"></script>
   <script src="{!!URL::asset('vendor/bootstrap/js/bootstrap.min.js')!!}"></script>
 <!--===============================================================================================-->
-    <script src="{!!URL::asset('vendor/select2/select2.min.js')!!}"></script>
     <script>
         $(".js-select2").each(function(){
             $(this).select2({
@@ -828,27 +825,11 @@ Copyright ©OnlineWeddingMart <script>document.write(new Date().getFullYear());<
         })
     </script>
 <!--===============================================================================================-->
-    <script src="{!!URL::asset('vendor/daterangepicker/moment.min.js')!!}"></script>
-    <script src="{!!URL::asset('vendor/daterangepicker/daterangepicker.js')!!}"></script>
-<!--===============================================================================================-->
     <script src="{!!URL::asset('vendor/slick/slick.min.js')!!}"></script>
     <script src="{!!URL::asset('js/slick-custom.js')!!}"></script>
 <!--===============================================================================================-->
-    <script src=portstaf"></script>  wetin de eloper sirve 
-    <script>
-        $('.parallax100').parallax100();
-    </script>
-<!--===============================================================================================-->
     <script src="{!!URL::asset('vendor/MagnificPopup/jquery.magnific-popup.min.js')!!}"></script>
     <script>
-        $('#launch-vendor-login').click(function(){
-            $('#modal-vendor-register').modal('hide');
-        });
-
-        $('#launch-vendor-register').click(function(){
-            $('#modal-vendor-login').modal('hide');
-        });
-
         $('.gallery-lb').each(function() { // the containers for all your galleries
             $(this).magnificPopup({
                 delegate: 'a', // the selector for gallery item
@@ -857,24 +838,6 @@ Copyright ©OnlineWeddingMart <script>document.write(new Date().getFullYear());<
                     enabled:true
                 },
                 mainClass: 'mfp-fade'
-            });
-        });
-    </script>
-<!--===============================================================================================-->
-    <script src="{!!URL::asset('vendor/isotope/isotope.pkgd.min.js')!!}"></script>
-<!--===============================================================================================-->
-    <script src="{!!URL::asset('vendor/sweetalert/sweetalert.min.js')!!}"></script>
-    <script>
-        $('.js-addwish-b2').on('click', function(e){
-            e.preventDefault();
-        });
-
-        /*---------------------------------------------*/
-
-        $('.js-addcart-detail').each(function(){
-            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-            $(this).on('click', function(){
-                swal(nameProduct, "is added to cart !", "success");
             });
         });
     </script>
@@ -897,6 +860,5 @@ Copyright ©OnlineWeddingMart <script>document.write(new Date().getFullYear());<
     </script>
 <!--===============================================================================================-->
     <script src="{!!URL::asset('js/main.js')!!}"></script>
-
 </body>
 </html>

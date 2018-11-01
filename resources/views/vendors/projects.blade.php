@@ -39,8 +39,13 @@
                         <!---New-->
                         <div class="form-group row">
                       <label class="col-12 col-sm-3 col-form-label text-sm-right">Album Details</label>
-                      <div class="col-12 col-sm-8 col-lg-6">
+                      <div class="col-12 col-sm-8 col-lg-6 {{ $errors->has('project_name') ? ' has-error' : '' }}">
                           {{Form::text('project_name',null,['class'=>'form-control','placeholder'=>'Project Name*'])}}
+                          @if ($errors->has('project_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('project_name') }}</strong>
+                                    </span>
+                                @endif
                         <div class=" mt-3 mb-3">
                           <div class="input-group-append be-addon">
                             <span class="input-group-btn">
@@ -65,7 +70,7 @@
                           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
                           <figure class="figure">
                           <a href="{{route('projects.view',$project->slug)}}" class="d-block mb-4 h-100">
-                          <img class="figure-img img-fluid img-thumbnail" src="{{ $project->first_image['path'] }}" alt="">
+                          <img class="figure-img img-fluid img-thumbnail" src="{{ $project->first_image }}" alt="">
                           </a>
                           <figcaption class="figure-caption"><strong>{{$project->name}}</strong></figcaption>
                           </figure>
@@ -93,6 +98,6 @@
     {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/stand-alone-button.js')) !!}
   </script>
     <script>
-         $('#lfm').filemanager('file', {prefix: route_prefix});
+         $('#lfm').filemanager('image', {prefix: route_prefix});
     </script>
     @endsection

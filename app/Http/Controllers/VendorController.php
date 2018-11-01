@@ -9,6 +9,7 @@ use App\Service;
 use App\Location;
 use App\Project;
 use Image;
+use Session;
 
 class VendorController extends Controller
 {

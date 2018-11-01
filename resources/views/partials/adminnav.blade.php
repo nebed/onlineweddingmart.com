@@ -31,10 +31,19 @@
                                     </li>
                                 </ul>-->
                             </li>
-                            <li>
+                            <li class="has-sub">
                                 <a href="/admin/posts">
                                     <i class="fas fa-copy"></i>
-                                    <span class="bot-line"></span>Posts</a>
+                                    <span class="bot-line"></span>Posts
+                                </a>
+                                    <ul class="header3-sub-list list-unstyled">
+                                        <li>
+                                            <a href="/admin/posts">Posts</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('honeymoons.index')}}">Honeymoon Packages</a>
+                                        </li>
+                                    </ul>
                             </li>
                             <li>
                                 <a href="/admin/categoriesandlocations">

@@ -59,6 +59,7 @@ class RegisterVendorController extends Controller
             'brand_name' => 'required|max:200',
             'location_id' => 'required',
             'service_id' => 'required',
+            'aggree' => 'required',
         ]);
     }
 

@@ -87,41 +87,55 @@
 	                <div class="card-body">
                     @if($customer->wedding)
                     @if($customer->wedding->checklist)
+                    <div class="row">
                       @if(!$customer->wedding->checklist->venues)
   	                  <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/wedding-venue">Pick a Wedding Venue</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->decorator)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/wedding-decorators">Hire a decorator for the venue</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->gown)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/bridal-wears">Get a Bride Gown</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->makeup)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/bridal-makeup">Hire a Good MakeUp Artist</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->cake)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/wedding-cakes">Hire a Cake Artist</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->groom)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/groom-wears">Get your Groom Suit</a>
                       </label>
                       @endif
+                    </div>
+                    <div class="row">
                       @if(!$customer->wedding->checklist->traditional)
                       <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="form-control"><a href="/vendors/all/traditional-wears">Get Traditional wears if necessary</a>
                       </label>
                       @endif
+                    </div>
                     @endif
                     @endif
 	                </div>
@@ -141,7 +155,7 @@
 
                           <div class="size-215 flex-col-t p-t-8">
                             <a href="/profile/{{$shortlist->vendor->slug}}" class="stext-116 cl2 hov-cl1 trans-04">
-                              {{$shortlist->vendor->name}}
+                              {{$shortlist->vendor->brand_name}}
                             </a>
                             <span class="stext-105 cl2">
                             {{$shortlist->vendor->service->name}}
@@ -176,7 +190,7 @@
 
                           <div class="size-215 flex-col-t p-t-8">
                             <a href="/profile/{{$shortlist->vendor->slug}}" class="stext-116 cl8 hov-cl1 trans-04">
-                              {{$shortlist->vendor->name}}
+                              {{$shortlist->vendor->brand_name}}
                             </a>
 
                             <span class="stext-105 cl0">
@@ -205,7 +219,7 @@
                       <div class="size-207">
                         <div class="flex-w flex-sb-m p-b-17">
                           <span class="mtext-107 cl2 p-r-20">
-                           {{$review->vendor->name}}
+                           {{$review->vendor->brand_name}}
                           </span>
 
                           <span class="fs-18 cl11">

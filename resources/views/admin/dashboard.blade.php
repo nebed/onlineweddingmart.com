@@ -10,6 +10,7 @@
             <!-- BREADCRUMB-->
             <section class="au-breadcrumb2">
                 <div class="container">
+                    @include('partials.messages')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
@@ -158,11 +159,9 @@
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </a>
                                                 	</form>
-                                                	<form id="deletevendor" action="{{route('vendors.destroy',$vendors->id)}}" method="DELETE">
-                                                    <a onclick="document.getElementById('deletevendor').submit();" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-                                                        <i class="zmdi zmdi-delete"></i>
-                                                    </a>
-                                                	</form>
+                                                    {{Form::open(['route'=>['vendors.destroy',$vendors->id],'method'=>'DELETE'])}}
+                                                    {{Form::button('<i class="zmdi zmdi-delete"></i>',['type'=>'submit','class'=>'item','data-toggle'=>"tooltip",'data-original-title'=>"Delete",'data-placement'=>"top"])}}
+                                                	{{Form::close()}}
                                                 	<form>
                                                     <a class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
                                                         <i class="zmdi zmdi-more"></i>

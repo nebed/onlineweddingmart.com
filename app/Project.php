@@ -11,7 +11,7 @@ class Project extends Model
 	    return $this->hasMany('App\Photo');
 	}
 	public function getFirstImageAttribute() {
-  		return $this->photos()->first();
+  		return $this->photos()->first()->path;
 	}
 
 	public function vendor()

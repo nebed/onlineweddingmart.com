@@ -261,7 +261,7 @@
 							<div class="block2-txt bg1 flex-w flex-t p-3">
 								<div class="block2-txt-child1 flex-col-l ">
 									<a vendorid="{{$vendor->id}}" href="/profile/{{$vendor->slug}}" class="stext-110 cl0 hov-cl2 trans-04 vendor-name p-b-6">
-										{{$vendor->name}}
+										{{$vendor->brand_name}}
 									</a>
 									<span class="stext-105 cl0">
 										<i class="icon-filter cl0 m-r-6 fs-22 trans-04 zmdi zmdi-pin"></i>
